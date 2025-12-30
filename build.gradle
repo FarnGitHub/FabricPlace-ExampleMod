@@ -8,9 +8,6 @@ version = project.property('version')
 base.archivesName = project.property('modname')
 
 java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
-    }
     targetCompatibility = JavaVersion.VERSION_1_8
     sourceCompatibility = JavaVersion.VERSION_1_8
 }
@@ -100,6 +97,15 @@ unimined {
             jarMod {
             }
         }
+    }
+}
+
+import xyz.wagyourtail.unimined.api.minecraft.task.RemapJarTask
+
+tasks.withType(RemapJarTask).configureEach {
+    mixinRemap {
+        enableBaseMixin()
+        enableMixinExtra()
     }
 }
 
